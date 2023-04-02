@@ -1,6 +1,8 @@
 package org.example.mapper;
 
 import lombok.extern.slf4j.Slf4j;
+import org.example.controller.dto.CreateProductRequestDto;
+import org.example.controller.dto.ProductDto;
 import org.example.entity.Product;
 import org.example.service.core.CreateProductParams;
 import org.springframework.stereotype.Component;
@@ -21,5 +23,37 @@ public class ProductMapperImpl implements ProductMapper {
 
         log.trace("Successfully created Product object from CreateProductParams - {}, product - {}", params, product);
         return product;
+    }
+
+    @Override
+    public CreateProductParams map(CreateProductRequestDto dto) {
+        log.trace("Creating CreateProductParams object from CreateProductRequestDto - {}", dto);
+
+        final CreateProductParams params = new CreateProductParams(
+                dto.getName(),
+                dto.getPrice(),
+                dto.getDescription(),
+                dto.getShortDescription()
+        );
+
+        log.trace("Successfully created CreateProductParams object from CreateProductRequestDto - {}, params - {}", dto, params);
+        return params;
+    }
+
+    @Override
+    public ProductDto map(Product product) {
+        log.trace("Creating ProductDto object from Product - {}", product);
+
+        final ProductDto productDto = new ProductDto(
+                product.getId(),
+                product.getName(),
+                product.getPrice(),
+                product.getDescription(),
+                product.getShortDescription(),
+                null
+        );
+
+        log.trace("Successfully created ProductDto object from Product - {}, params - {}", product, productDto);
+        return productDto;
     }
 }

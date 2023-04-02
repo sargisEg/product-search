@@ -8,6 +8,7 @@ import org.example.repository.ProductRepository;
 import org.example.service.core.CreateProductParams;
 import org.example.service.core.ProductService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import java.util.Optional;
@@ -21,6 +22,7 @@ public class ProductServiceImpl implements ProductService {
     private final ProductMapper productMapper;
 
     @Override
+    @Transactional
     public Product createProduct(CreateProductParams params) {
         Assert.notNull(params, "Params should not be null. Class - ProductServiceImpl");
         log.debug("Creating product with params - {}", params);
@@ -34,6 +36,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Optional<Product> findProductById(Long id) {
         Assert.notNull(id, "Id should not be null. Class - ProductServiceImpl");
         log.debug("Finding product with id - {}", id);
@@ -45,6 +48,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    @Transactional
     public void deleteProductById(Long id) {
         Assert.notNull(id, "Id should not be null. Class - ProductServiceImpl");
         log.debug("Deleting product with id - {}", id);
