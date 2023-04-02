@@ -23,6 +23,9 @@ public class Product {
     @Column(name = "name", nullable = false)
     private String name;
 
+    @Column(name = "price", nullable = false)
+    private Integer price;
+
     @Lob
     @Column(name = "description", nullable = false)
     private String description;
