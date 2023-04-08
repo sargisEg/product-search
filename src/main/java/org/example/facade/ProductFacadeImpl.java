@@ -2,7 +2,6 @@ package org.example.facade;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import lombok.val;
 import org.example.controller.dto.CreateProductRequestDto;
 import org.example.controller.dto.ErrorDto;
 import org.example.controller.dto.ProductDto;
@@ -12,15 +11,13 @@ import org.example.service.core.ProductService;
 import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
 
-import java.util.Optional;
-
 @Slf4j
 @Component
 @RequiredArgsConstructor
 class ProductFacadeImpl implements ProductFacade {
 
-    private ProductService productService;
-    private ProductMapper productMapper;
+    private final ProductService productService;
+    private final ProductMapper productMapper;
 
     @Override
     public ProductDto createProduct(CreateProductRequestDto dto) {

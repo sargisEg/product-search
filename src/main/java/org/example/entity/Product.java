@@ -26,7 +26,6 @@ public class Product {
     @Column(name = "price", nullable = false)
     private Integer price;
 
-    @Lob
     @Column(name = "description", nullable = false)
     private String description;
 
